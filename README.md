@@ -2,7 +2,7 @@
 
 Detecting gradual behavioral drift in distributed systems using time-series telemetry data.
 
-## 🚀 Overview
+## Overview
 
 This project focuses on identifying **behavioral drift** in distributed computing systems such as cloud platforms and microservices.
 
@@ -16,7 +16,7 @@ The goal is to detect these subtle changes early using **data analytics and mach
 
 ---
 
-## 🧠 Problem Statement
+## Problem Statement
 
 Traditional monitoring systems rely on fixed thresholds and alerts, which are effective for sudden anomalies but fail to detect slow performance degradation.
 
@@ -27,7 +27,7 @@ This project aims to:
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 Planned dataset:
 - Google Cluster / Borg Telemetry Data
@@ -41,7 +41,7 @@ Data includes:
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 - Python
 - Pandas, NumPy
@@ -51,7 +51,7 @@ Data includes:
 
 ---
 
-## 🧪 Approach (Planned)
+## Approach (Planned)
 
 1. Data preprocessing and cleaning  
 2. Feature extraction from time-series data  
@@ -64,7 +64,7 @@ Data includes:
 
 ---
 
-## 📈 Expected Outcome
+## Expected Outcome
 
 - Detect gradual performance degradation  
 - Identify drift patterns in system metrics  
@@ -72,13 +72,13 @@ Data includes:
 
 ---
 
-## ⚠️ Current Status
+## Current Status
 
 🚧 Work in Progress  
-Initial setup and planning phase
+Setup and Planning phase done, implemenatation phase going on
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 Surya K
