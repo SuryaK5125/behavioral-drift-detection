@@ -3,7 +3,7 @@
 ## Overview
 Detects behavioral drift in Google Borg cluster telemetry using 
 statistical methods with thresholds learned dynamically from early 
-window behavior — no hardcoded values.
+window behavior and not hardcoded values.
 
 ## Key Findings
 - Significant memory allocation drift detected at window 10 (PSI=0.2629)
