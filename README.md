@@ -1,33 +1,28 @@
 # Behavioral Drift Detection in Distributed Systems
 
-Detecting gradual behavioral drift in large-scale distributed systems 
-using Google Borg cluster traces and PySpark.
-
 ## Overview
-Traditional monitoring relies on fixed thresholds — effective for sudden 
-failures but blind to gradual behavioral shifts. This project detects 
-distributional drift in system metrics over time without hardcoded thresholds.
+Detects behavioral drift in Google Borg cluster telemetry using 
+statistical methods with thresholds learned dynamically from early 
+window behavior — no hardcoded values.
 
-## Dataset
-Google Borg Cluster Traces — 349,000+ real production events from Google's 
-internal cluster manager, containing CPU usage, memory allocation, scheduling 
-events, and failure indicators.
+## Key Findings
+- Significant memory allocation drift detected at window 10 (PSI=0.2629)
+- Task failure rate nearly doubled from ~12% to ~24% in drift windows
+- Random Forest achieves 0.98 ROC-AUC predicting task failures from resource metrics
+- avg_memory_usage, max_cpu_usage, avg_cpu_usage are top failure predictors
 
-Dataset not included due to size. Available at: 
-https://github.com/google/cluster-data
+## Pipeline
+1. Ingest 313MB Google Borg traces (1.3M rows) via PySpark
+2. Parse semi-structured CPU/memory fields using regex extraction
+3. Split 349k cleaned records into 10 time-based windows
+4. Apply KS test + PSI to detect distributional drift vs baseline window
+5. Learn drift thresholds dynamically from warm-up windows 2-3
+6. Correlate drift with task failure rates
+7. Train Random Forest failure prediction model
+8. Simulate real-time streaming alert pipeline
 
 ## Tech Stack
-Python, PySpark, scipy, pandas, matplotlib, seaborn
+Python, PySpark, SciPy, Scikit-learn, Pandas, Matplotlib, Seaborn
 
-## Approach
-1. Load and parse raw telemetry using PySpark (nested struct columns, multiline CSV)
-2. Extract CPU usage, memory allocation, and scheduling metrics
-3. Partition data into time windows using distributed Spark operations
-4. Detect drift by comparing distributions across windows using statistical methods
-5. Simulate real-time alerting by processing windows sequentially
-
-## Status
-🚧 Work in Progress
-
-## Authors
-Surya K
+## Dataset
+[Google Borg Cluster Traces](https://github.com/google/cluster-data)
