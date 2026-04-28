@@ -31,13 +31,13 @@ Python, PySpark, SciPy, Scikit-learn, Pandas, Matplotlib, Seaborn
 ## Results
 
 ### Drift Detection (KS + PSI)
-![Drift Detection](drift_detection_results.png)
+![Drift Detection](outputs/drift_detection_results.png)
 
 ### Drift vs Failure Rate
-![Drift vs Failure](drift_vs_failure.png)
+![Drift vs Failure](outputs/drift_vs_failure.png)
 
 ### Streaming Alert Timeline
-![Streaming Alerts](streaming_drift_alerts.png)
+![Streaming Alerts](outputs/streaming_drift_alerts.png)
 
 ### Failure Prediction Model
-![Failure Prediction](failure_prediction.png)
+![Failure Prediction](outputs/failure_prediction.png)
