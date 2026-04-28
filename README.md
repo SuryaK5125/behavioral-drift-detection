@@ -26,3 +26,18 @@ Python, PySpark, SciPy, Scikit-learn, Pandas, Matplotlib, Seaborn
 
 ## Dataset
 [Google Borg Cluster Traces](https://github.com/google/cluster-data)
+
+
+## Results
+
+### Drift Detection (KS + PSI)
+![Drift Detection](drift_detection_results.png)
+
+### Drift vs Failure Rate
+![Drift vs Failure](drift_vs_failure.png)
+
+### Streaming Alert Timeline
+![Streaming Alerts](streaming_drift_alerts.png)
+
+### Failure Prediction Model
+![Failure Prediction](failure_prediction.png)
