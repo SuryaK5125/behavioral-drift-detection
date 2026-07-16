@@ -31,7 +31,7 @@ Python, PySpark, SciPy, Scikit-learn, Pandas, Matplotlib, Seaborn
 ## Results
 
 ### Drift Detection (KS + PSI)
-![Drift Detection](outputs/drift_detection_results.png) 
+![Drift Detection](outputs/drift_detection_results.png)
 
 ### Drift vs Failure Rate
 ![Drift vs Failure](outputs/drift_vs_failure.png)
