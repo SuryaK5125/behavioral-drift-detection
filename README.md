@@ -1,43 +1,64 @@
-# Behavioral Drift Detection in Distributed Systems
+# Behavioral Drift Detection
+
+A machine learning project for detecting changes in resource usage patterns and classifying failures using Google Borg cluster telemetry data.
 
 ## Overview
-Detects behavioral drift in Google Borg cluster telemetry using 
-statistical methods with thresholds learned dynamically from early 
-window behavior and not hardcoded values.
 
-## Key Findings
-- Significant memory allocation drift detected at window 10 (PSI=0.2629)
-- Task failure rate nearly doubled from ~12% to ~24% in drift windows
-- Random Forest achieves 0.98 ROC-AUC predicting task failures from resource metrics
-- avg_memory_usage, max_cpu_usage, avg_cpu_usage are top failure predictors
-
-## Pipeline
-1. Ingest 313MB Google Borg traces (1.3M rows) via PySpark
-2. Parse semi-structured CPU/memory fields using regex extraction
-3. Split 349k cleaned records into 10 time-based windows
-4. Apply KS test + PSI to detect distributional drift vs baseline window
-5. Learn drift thresholds dynamically from warm-up windows 2-3
-6. Correlate drift with task failure rates
-7. Train Random Forest failure prediction model
-8. Simulate real-time streaming alert pipeline
+This project uses PySpark to process cluster telemetry, statistical tests to identify behavioral drift, and a Random Forest classifier to identify failure-related patterns.
 
 ## Tech Stack
-Python, PySpark, SciPy, Scikit-learn, Pandas, Matplotlib, Seaborn
 
-## Dataset
-[Google Borg Cluster Traces](https://github.com/google/cluster-data)
+- **Python, PySpark** – Data processing and ETL
+- **Pandas, NumPy** – Data manipulation and feature engineering
+- **SciPy** – Statistical drift detection
+- **Scikit-learn** – Machine learning and evaluation
+- **Matplotlib, Seaborn** – Data visualization
 
+## Implementation
+
+### 1. Data Preprocessing
+
+- Processed 405,894 Google Borg cluster-trace records using PySpark.
+- Cleaned missing and invalid values, retaining 349,442 records.
+- Extracted CPU and memory usage features.
+
+### 2. Behavioral Drift Detection
+
+- Divided the dataset into 10 chronological, approximately equal-count windows.
+- Applied the Kolmogorov–Smirnov (KS) test and Population Stability Index (PSI) to detect changes in resource usage distributions.
+- Analyzed CPU and memory usage patterns across windows.
+
+### 3. Failure Classification
+
+- Trained a Random Forest classifier using resource usage and engineered features.
+- Evaluated classification performance using ROC-AUC, average precision, and other classification metrics.
 
 ## Results
 
-### Drift Detection (KS + PSI)
-![Drift Detection](outputs/drift_detection_results.png)
+| Metric | Result |
+|---|---|
+| Raw Records | 405,894 |
+| Records After Cleaning | 349,442 |
+| Drift Analysis Windows | 10 |
+| ROC-AUC | 0.873 |
+| Average Precision | 0.816 |
+| Accuracy | 91% |
 
-### Drift vs Failure Rate
-![Drift vs Failure](outputs/drift_vs_failure.png)
+*Results are from the final notebook's saved experimental outputs.*
 
-### Streaming Alert Timeline
-![Streaming Alerts](outputs/streaming_drift_alerts.png)
+## How to Run
 
-### Failure Prediction Model
-![Failure Prediction](outputs/failure_prediction.png)
+1. Clone the repository.
+2. Install the required Python libraries.
+3. Download the required Google Borg cluster-trace dataset and configure its path in the notebook.
+4. Open and execute `behavioral_drift_detection_final.ipynb`.
+
+## Limitations
+
+- Drift detection identifies distribution changes, not necessarily system failures.
+- The classifier identifies failure-related patterns but does not establish advance failure prediction.
+- The current experiment has preprocessing and temporal-validation limitations.
+
+## Conclusion
+
+The project demonstrates a workflow combining scalable telemetry preprocessing, statistical drift analysis, and machine learning-based failure classification.
